@@ -7,7 +7,7 @@ function crypto(password) {
     }
 
     let encryptedPassword = passwordArray.slice(2, -1).reverse();
-    encryptedPassword.unshift(passwordArrayLength)
+    encryptedPassword.push(passwordArrayLength)
 
     if (passwordArray.length > 5) {
         const addPrefix = passwordArray.slice(3, -2).reverse();
