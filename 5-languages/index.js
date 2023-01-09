@@ -7,7 +7,7 @@ switch (LANGUAGE) {
         greeting = 'Дарова';
         break;
     case 'en':
-        greeting = ' Hello';
+        greeting = 'Hello';
         break;
     case 'de':
         greeting = 'Gutten tag!';
