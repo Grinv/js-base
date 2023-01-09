@@ -1,4 +1,4 @@
-function transformDateStringtoArray(dateString) {
+function transformDateStringToArray(dateString) {
     let dateArray = dateString.split('/');
 
     if (dateArray.length !== 3) {
@@ -13,7 +13,7 @@ function transformDateStringtoArray(dateString) {
 }
 
 function checkCorrectDate(dateArray) {
-    const BIG_MONTH_ARRAY = [1, 3, 5, 7, 8, 10, 12];
+    const LONG_MONTH_ARRAY = [1, 3, 5, 7, 8, 10, 12];
 
     function isLeapYear(year) {
         return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
@@ -31,10 +31,12 @@ function checkCorrectDate(dateArray) {
         return false;
     }
 
-    if (day === 31 && !BIG_MONTH_ARRAY.includes(month)) {
+    if (day === 31 && !LONG_MONTH_ARRAY.includes(month)) {
         return false;
     }
 
+
+    // check February for correct day and leap year
     if (month === 2) {
         if (day === 30 || (day === 29 && !isLeapYear(year)) ) {
             return false;
@@ -49,13 +51,13 @@ function checkDateFormat(date) {
         return false;
     }
 
-    let dateNumbersArray = transformDateStringtoArray(date);
+    let dateNumbersArray = transformDateStringToArray(date);
 
     if (dateNumbersArray === null) {
         return false
     }
 
-    // фильтруем пустые значения и значения не с числами
+    // filter empty and not number variables
     if (dateNumbersArray.some(number => !number || !(Number(number) >= 0))) {
         return false
     }
@@ -70,7 +72,7 @@ function checkDateFormat(date) {
 function getDates(arr) {
     const formattedArray = arr
         .filter(checkDateFormat)
-        .map(filteredDate => transformDateStringtoArray(filteredDate).join('-'));
+        .map(filteredDate => transformDateStringToArray(filteredDate).join('-'));
 
     return formattedArray;
 }
