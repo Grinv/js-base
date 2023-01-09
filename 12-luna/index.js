@@ -8,7 +8,7 @@ function isCardNumberCorrect(cardNumber) {
 
     const cleanCardNumberArray = cleanCardNumber.split('');
 
-    if (cleanCardNumberArray.some(symbol => isNaN(Number(symbol)))) {
+    if (cleanCardNumberArray.some(symbol => Number.isNaN(Number(symbol)))) {
         return false;
     }
 
