@@ -7,6 +7,20 @@
     <title>Document</title>
     <script src="15-task-object/index.js"></script>
     <script src="16-another-tasks/index.js"></script>
+    <script src="17-calc/index.js"></script>
 </head>
-<body />
+<body>
+    <form id="form" onsubmit="calc(event)">
+        <div>
+            <input name="number1" type="number" required>
+            <input name="number2" type="number" required>
+            <label>Result: <input id="result" type="number" readonly /></label>
+        </div>
+        <br />
+        <button type="submit" data-operation="addition">+</button>
+        <button type="submit" data-operation="subtraction">-</button>
+        <button type="submit" data-operation="multiplication">*</button>
+        <button type="submit" data-operation="division">/</button>
+      </form>
+</body>
 </html>
