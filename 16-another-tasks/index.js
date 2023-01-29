@@ -1,4 +1,4 @@
-const toDoList = {
+const toDoListOld = {
     list: [],
     getTaskIndexById: function(id) {
         const taskIndex = this.list.findIndex(task => task.id === id);
@@ -9,9 +9,13 @@ const toDoList = {
         return taskIndex;
     },
     add: function(task) {
+        alert(1);
+        console.log(this);
         this.list.push(task);
     },
     remove: function(id) {
+        debugger;
+        console.log(this);
         const taskIndex = this.getTaskIndexById(id);
         if (taskIndex !== null) {
             this.list.splice(taskIndex, 1);
@@ -31,24 +35,48 @@ const toDoList = {
     }
 }
 
-toDoList.add({
-    title: 'Выкинуть мусор',
-    id: 1,
-    priority: 2,
-});
+const newTask = {
+    list: [{
+        id: 1,
+        name: 'тест',
+        description: 'описание',
+        order: 0,
+    }]
+}
 
-toDoList.add({
-    title: 'Погулять',
+// можно так
+newTask.getTaskIndexById = toDoListOld.getTaskIndexById.bind(newTask)
+console.log(newTask.getTaskIndexById(1));
+
+
+
+// можем либо так
+const newTaskAdd = toDoList.add.bind(newTask);
+
+newTaskAdd({
     id: 2,
-    priority: 3,
+    name: 'тест1',
+    description: 'описание1',
+    order: 1,
 });
 
-toDoList.add({
-    title: 'Помыть посуду',
+
+
+//либо так
+toDoList.add.call(newTask, {
     id: 3,
-    priority: 1,
+    name: 'тест2',
+    description: 'описание2',
+    order: 2,
 });
 
-toDoList.remove(3);
-toDoList.sort();
-toDoList.changeField(1, 'title', 'Сделать уроки');
+
+
+
+// либо так
+toDoList.remove.apply(newTask, [1]);
+
+
+
+
+console.log(newTask.list);
