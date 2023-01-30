@@ -3,34 +3,33 @@ const toDoListOld = {
     getTaskIndexById: function(id) {
         const taskIndex = this.list.findIndex(task => task.id === id);
         if (taskIndex === -1) {
-            console.error(`Задачи с id ${id} не существует`);
-            return null;
+            throw new Error(`Задачи с id ${id} не существует`)
         }
         return taskIndex;
     },
     add: function(task) {
-        alert(1);
-        console.log(this);
         this.list.push(task);
     },
     remove: function(id) {
-        debugger;
-        console.log(this);
-        const taskIndex = this.getTaskIndexById(id);
-        if (taskIndex !== null) {
+        try {
+            const taskIndex = this.getTaskIndexById(id);
             this.list.splice(taskIndex, 1);
+        } catch (error) {
+            console.error(error.message);
         }
     },
     sort: function() {
         this.list.sort((a, b) => a.priority - b.priority);
     },
     changeField: function(id, field, value) {
-        const taskIndex = this.getTaskIndexById(id);
-        if (taskIndex !== null) {
+        try {
+            const taskIndex = this.getTaskIndexById(id);
             const task = this.list[taskIndex];
             if (task[field]) {
                 task[field] = value
             }
+        } catch (error) {
+            console.error(error.message);
         }
     }
 }
