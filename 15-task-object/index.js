@@ -52,4 +52,3 @@ toDoList.add({
 toDoList.remove(3);
 toDoList.sort();
 toDoList.changeField(1, 'title', 'Сделать уроки');
-console.log(toDoList.list);
